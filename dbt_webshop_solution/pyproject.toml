@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "dbt-webshop"
+version = "0.1.0"
+description = ""
+authors = ["Gary Clark <gclark@xccelerated.io>"]
+readme = "README.md"
+packages = [{include = "dbt_webshop"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

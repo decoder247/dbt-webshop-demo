@@ -1,0 +1,41 @@
+
+version: 2
+
+sources:
+  - name: webshop
+    database: webshop
+    schema: public
+    description: Our webshop database as a source
+    tables:
+      - name: category
+        description: The category table
+        columns:
+          - name: id
+            description: Primary key of table
+            tests:
+              - unique
+              - not_null
+              - relationships:
+                  to: source('webshop', 'productcategory')
+                  field: category_id
+      - name: customer
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+      - name: order
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: status
+            tests:
+              - accepted_values:
+                  values: ['paid', 'placed']
+          - name: customer_id
+
+      - name: productcategory
+              
+              

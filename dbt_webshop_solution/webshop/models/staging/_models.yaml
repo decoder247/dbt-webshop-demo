@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: stg_category
+  - name: stg_customer
+  - name: stg_order

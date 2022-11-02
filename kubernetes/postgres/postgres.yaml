@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres # has to match .spec.template.metadata.labels
+  serviceName: postgres-service
+  replicas: 1 # by default is 1
+  # minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: postgres # has to match .spec.selector.matchLabels
+    spec:
+      # securityContext:
+      #   fsGroup: 999
+      containers:
+      - name: postgres
+        image: postgres:14.5
+        ports:
+        - containerPort: 5432
+          name: db
+        env:
+          - name: POSTGRES_USERNAME
+            value: postgres
+          - name: POSTGRES_DB
+            value: webshop
+          - name: POSTGRES_PASSWORD
+            value: dbt_demo
+        volumeMounts:
+        - name: postgres-volume
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-volume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 200Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - name: db
+      port: 5432
+  type: LoadBalancer
