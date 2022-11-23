@@ -1,5 +1,6 @@
 {{ config(
-    materialized = 'incremental'
+    materialized = 'incremental',
+    unique_key = ['category_id']
 ) }}
 
 WITH source AS (
@@ -19,3 +20,21 @@ SELECT
     NAME AS category_name
 FROM
     source
+
+{% if is_incremental() %}
+-- this is only applied on an incremental run
+WHERE
+    id > (
+        SELECT
+            MAX(category_id)
+        FROM
+            {{ this }}
+    )
+    OR -- also use the modified at time
+    modified_at > (
+        SELECT
+            MAX(modified_at)
+        FROM
+            {{ this }}
+    )
+{% endif %}

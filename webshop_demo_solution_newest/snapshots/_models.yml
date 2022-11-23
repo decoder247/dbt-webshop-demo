@@ -1,0 +1,12 @@
+version: 2
+
+snapshots:
+  - name: stg_brand__snapshot
+  - name: stg_category__snapshot
+  - name: stg_customer__snapshot
+  - name: stg_customeraddress__snapshot
+  - name: stg_customerpaymentprovider__snapshot
+  - name: stg_order__snapshot
+  - name: stg_paymentprovider__snapshot
+  - name: stg_product__snapshot
+  - name: stg_productcategory__snapshot

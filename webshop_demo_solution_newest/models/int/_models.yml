@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: int_category_per_customer
+  - name: int_orders_per_customer
+  - name: int_products_per_customer
