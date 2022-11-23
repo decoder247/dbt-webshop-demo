@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: webshop
+    database: webshop
+    schema: public
+    description: Our webshop database as a source
+    tables:
+      - name: category
+        description: The category table
+        columns:
+          - name: id
+            description: Primary key of table
+            tests:
+              - unique
+              - not_null
+              - relationships:
+                  to: source('webshop', 'productcategory')
+                  field: category_id
+      - name: customer
+      - name: customeraddress
+      - name: customerpaymentprovider
+      - name: event
+      - name: order
+      - name: orderitem
+      - name: paymentprovider
+      - name: product
+      - name: productbrand
+      - name: productcategory

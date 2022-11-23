@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: imd_orders_per_customer
+  - name: imd_products_per_customer
+  - name: imd_category_per_customer

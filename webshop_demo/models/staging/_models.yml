@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_category
+  - name: stg_customer
+  - name: stg_customeraddress
+  - name: stg_customerpaymentprovider
+  - name: stg_event
+  - name: stg_order
+  - name: stg_orderitem
+  - name: stg_paymentprovider
+  - name: stg_product
+  - name: stg_productbrand
+  - name: stg_productcategory
